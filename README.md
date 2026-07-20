@@ -1,6 +1,6 @@
-# DeltaBet — Social Gaming Layer for Online Casinos
+# DeltaBet - Social Gaming Layer for Online Casinos
 
-DeltaBet is a B2B SaaS layer that adds **social, turn-based tournament mechanics on top of the games a casino already has** — without touching RTP, licenses or core infrastructure. Groups of friends compete in tournaments; each turn a player receives a challenge, completes it playing on the real casino, and performance is measured through account balance snapshots.
+DeltaBet is a B2B SaaS layer that adds **social, turn-based tournament mechanics on top of the games a casino already has** - without touching RTP, licenses or core infrastructure. Groups of friends compete in tournaments; each turn a player receives a challenge, completes it playing on the real casino, and performance is measured through account balance snapshots.
 
 This repo contains the tournament engine, its REST API, and the playable game demos.
 
@@ -8,7 +8,7 @@ This repo contains the tournament engine, its REST API, and the playable game de
 
 ![Games hub](screenshots/hub.png)
 
-![God's Roulette — match setup](screenshots/gods-roulette.png)
+![God's Roulette - match setup](screenshots/gods-roulette.png)
 
 ## Architecture
 
