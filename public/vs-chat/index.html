@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VS Chat — by DeltaBet</title>
+  <link rel="icon" type="image/png" href="/assets/brand/deltabet-icon-red.png" />
+  <link rel="stylesheet" href="../gods-roulette/style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/viewport-fit.css" />
+  <link rel="stylesheet" href="/pvp-leaderboard.css" />
+</head>
+<body>
+  <div class="bg" id="bg"></div>
+  <div class="bg-overlay"></div>
+
+  <header class="game-header">
+    <a class="header-brand" href="/" aria-label="Delta Bet — home">
+      <img src="/assets/brand/deltabet-horizontal-white.png" alt="Delta Bet" />
+    </a>
+    <div class="header-divider" aria-hidden="true"></div>
+    <div class="header-game-name"><span>Delta Bet Game</span><strong>VS Chat</strong></div>
+    <nav class="header-nav" aria-label="Navigation">
+      <a href="/">Home</a>
+      <a href="/gods-roulette/">God's Roulette</a>
+      <a href="/magic-island/">Magic Island</a>
+      <div class="lang-toggle" title="Language / Idioma" aria-label="Language selector">
+        <button class="flag" id="lang-en" type="button" aria-label="English">EN</button>
+        <button class="flag" id="lang-es" type="button" aria-label="Español">ES</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="screen-home">
+      <img class="logo-card" src="/assets/vs-chat/logo.png" alt="VS Chat" onerror="this.style.display='none'" />
+      <p class="tagline" id="home-tagline">EL STREAMER CONTRA SU CHAT — ¿QUIÉN ES EL MAESTRO DE LOS SLOTS?</p>
+
+      <div class="home-grid">
+        <div class="players-panel">
+          <div class="pp-head"><span>JUGADORES</span><span>INFO</span></div>
+          <div id="player-list">
+            <div class="pp-row"><div class="name-cell"><input type="text" id="streamer-name" value="Streamer" maxlength="30" /><span class="edit">✎</span></div><span class="admin side-streamer">Streamer</span></div>
+            <div class="pp-row"><div class="name-cell"><input type="text" id="chat-name" value="Chat" maxlength="30" /><span class="edit">✎</span></div><span class="admin side-chat">Chat</span></div>
+          </div>
+          <div class="pp-foot" style="font-size:13px;color:#999;padding:8px 14px">Siempre 2 lados: el streamer y su chat</div>
+        </div>
+        <div class="menu-col">
+          <button class="menu-btn" id="start">Jugar</button>
+          <button class="menu-btn" id="btn-instructions">Instrucciones</button>
+          <button class="menu-btn" id="more-games" onclick="location.href='/'">Más juegos</button>
+        </div>
+      </div>
+
+      <div id="instructions" class="panel instructions-panel" aria-hidden="true">
+        <h3 id="instructions-title">INSTRUCCIONES</h3>
+        <p id="instruction-1">1. Se juega en vivo: el STREAMER contra su CHAT, por turnos. Cada lado tiene su propio mazo de challenges.</p>
+        <p id="instruction-2">2. En el turno del streamer, la condición es sobre él ("si hoy tomaste café..."). En el turno del chat, la condición es sobre el chat ("si algún mod comenta en 30 segundos...") — el chat decide su destino.</p>
+        <p id="instruction-3">3. Cada turno: gira para obtener slot + challenge, ingresa el balance, juega los giros en vivo e ingresa el balance posterior.</p>
+        <p id="instruction-4">4. Son 3 rounds. Gana el lado con mejor rendimiento acumulado, aunque ambos pierdan.</p>
+        <button id="instructions-close" class="primary instructions-close">Cerrar</button>
+      </div>
+
+      <p class="disclaimer" id="disclaimer">Al hacer clic en JUGAR aceptás que ni DeltaBet.xyz ni VS Chat se hacen cargo de tus pérdidas o ganancias. Si no querés perder dinero, te recomendamos jugar slots de prueba.</p>
+    </section>
+
+    <section id="screen-game" class="hidden">
+      <img class="game-logo" src="/assets/vs-chat/logo.png" alt="VS Chat" onerror="this.style.display='none'" />
+      <div class="game-hud">
+        <div class="turn-banner" id="turn-banner"></div>
+        <div class="checkpoints" id="checkpoints"></div>
+      </div>
+
+      <div id="view-round-intro" class="hidden">
+        <div class="round-title" id="round-title"></div>
+        <button class="primary" id="btn-to-spin">Siguiente</button>
+      </div>
+
+      <div id="view-spin" class="hidden">
+        <div class="panel">
+          <h3 id="spin-title">GIRA PARA OBTENER TU DESAFIO!</h3>
+          <div class="cards">
+            <div class="card vs-card"><span>Slot</span></div>
+            <div class="card vs-card"><span>Challenge</span></div>
+          </div>
+          <button class="primary" id="btn-spin">Girar</button>
+        </div>
+      </div>
+
+      <div id="view-challenge" class="hidden">
+        <div class="panel challenge-display-panel">
+          <h3 id="challenge-title"></h3>
+          <p class="card-label" id="side-label">SLOT</p>
+          <div class="slot-card" id="slot-card"></div>
+          <p class="card-label">CHALLENGE</p>
+          <div class="challenge-card" id="challenge-card"></div>
+        </div>
+        <div id="balance-zone" class="panel balance-calculator">
+            <div class="calculator-head"><span>TURN PERFORMANCE</span><h3>BALANCE CALCULATOR</h3><p>We use both snapshots to calculate your performance for this round.</p></div>
+            <div class="balance-tabs">
+              <span class="tab" id="tab-pre">BALANCE PREVIO</span>
+              <span class="tab" id="tab-post">BALANCE POSTERIOR</span>
+            </div>
+            <p id="balance-label" class="calculator-label"></p>
+            <div class="balance-input-wrap"><span>$</span><input type="number" id="balance-input" placeholder="0.00" step="0.01" min="0" /></div>
+            <button class="primary calculator-submit" id="btn-balance">Enviar</button>
+        </div>
+      </div>
+
+      <div id="view-scoreboard" class="hidden">
+        <div class="panel">
+          <table class="scores">
+            <thead><tr><th>Lado</th><th>Balance</th><th>Balance total</th></tr></thead>
+            <tbody id="score-rows"></tbody>
+          </table>
+          <button class="primary" id="btn-advance" style="margin-top:14px">Siguiente</button>
+        </div>
+      </div>
+
+      <div id="view-winner" class="hidden">
+        <p class="tagline" style="font-size:22px">EL MAESTRO DE LOS SLOTS ES</p>
+        <div class="winner-name" id="winner-name"></div>
+        <div class="panel">
+          <table class="scores">
+            <thead><tr><th>Lado</th><th>Balance total</th></tr></thead>
+            <tbody id="final-rows"></tbody>
+          </table>
+        </div>
+        <button class="primary" onclick="location.reload()">Jugar de nuevo</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

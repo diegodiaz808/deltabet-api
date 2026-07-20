@@ -1,0 +1,13 @@
+node_modules/
+.env
+.claude/
+.DS_Store
+# private business docs
+SPEC.md
+AGENTS.md
+CLAUDE.md
+games/
+challenges/
+data/
+# heavy media
+assets/

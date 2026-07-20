@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>God's Roulette — by DeltaBet</title>
+  <link rel="icon" type="image/png" href="/assets/brand/deltabet-icon-red.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/viewport-fit.css" />
+  <link rel="stylesheet" href="/pvp-leaderboard.css" />
+</head>
+<body class="game-gods-roulette">
+  <div class="bg" id="bg"></div>
+  <div class="bg-overlay"></div>
+
+  <header class="game-header">
+    <a class="header-brand" href="/" aria-label="Delta Bet — inicio">
+      <img src="/assets/brand/deltabet-horizontal-white.png" alt="Delta Bet" />
+    </a>
+    <div class="header-divider" aria-hidden="true"></div>
+    <div class="header-game-name"><span>Delta Bet Game</span><strong>God's Roulette</strong></div>
+    <nav class="header-nav" aria-label="Navegación">
+      <a href="/">Home</a>
+      <a href="/magic-island/">Magic Island</a>
+      <a href="/vs-chat/">VS Chat</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="screen-home">
+      <img class="logo-card" src="/assets/gods-roulette/logo.png" alt="God's Roulette by DeltaBet" onerror="this.style.display='none'" />
+      <p class="tagline">RETA A TU AMIGO PARA DESCUBRIR QUIEN ES EL MAESTRO DE LA RULETA</p>
+
+      <div class="home-grid">
+        <div class="players-panel">
+          <div class="pp-head"><span>JUGADORES</span><span>INFO</span></div>
+          <div id="player-list"></div>
+          <div class="pp-foot"><button id="add-player">Agrega un jugador</button></div>
+        </div>
+        <div class="menu-col">
+          <button class="menu-btn" id="start">Jugar</button>
+          <button class="menu-btn" id="btn-instructions">Instrucciones</button>
+          <button class="menu-btn" onclick="location.href='/'">Mas juegos</button>
+        </div>
+      </div>
+
+      <div id="instructions" class="panel home-instructions" aria-hidden="true">
+        <h3>INSTRUCCIONES</h3>
+        <p>1. Cada jugador, en su turno, gira para obtener su apuesta: una JUGADA (dónde apostar en el paño) y las TIRADAS (cuántos spins de ruleta).</p>
+        <p>2. Ingresa tu balance, anda a la ruleta de tu casino y juga la jugada esa cantidad de tiradas.</p>
+        <p>3. Al volver, ingresa tu balance posterior. Tu rendimiento del turno es la variación porcentual.</p>
+        <p>4. Son 3 rounds con un turno por jugador. Gana el que acumula el mejor rendimiento — aunque todos pierdan, gana el que perdió menos.</p>
+        <button class="primary instructions-close">Cerrar</button>
+      </div>
+
+      <p class="disclaimer">Al clickear JUGAR estas aceptando que ni DeltaBet.xyz ni Gods Roulette se haran cargo de tus perdidas o ganancias. Si no quieres perder $, te recomendamos jugar ruletas de prueba.</p>
+    </section>
+
+    <section id="screen-game" class="hidden">
+      <img class="game-logo" src="/assets/gods-roulette/logo.png" alt="God's Roulette" onerror="this.style.display='none'" />
+      <div class="game-hud">
+        <div class="turn-banner" id="turn-banner"></div>
+        <div class="checkpoints" id="checkpoints"></div>
+      </div>
+
+      <div id="view-round-intro" class="hidden">
+        <div class="round-title" id="round-title"></div>
+        <button class="primary" id="btn-to-spin">Siguiente</button>
+      </div>
+
+      <div id="view-spin" class="hidden">
+        <div class="panel">
+          <h3>GIRA PARA OBTENER LA APUESTA!</h3>
+          <div class="cards">
+            <div class="card"><span>Jugadas</span></div>
+            <div class="card"><span>Tiradas</span></div>
+          </div>
+          <button class="primary" id="btn-spin">Girar</button>
+        </div>
+      </div>
+
+      <div id="view-challenge" class="hidden">
+        <div class="panel challenge-display-panel">
+          <h3 id="challenge-title">OBTUVISTE TU APUESTA!</h3>
+          <div style="margin:14px 0" class="board-wrap" id="board"></div>
+          <div class="bets-text" id="bets-text"></div>
+          <div class="cards"><div class="card" id="tiradas-card"></div></div>
+        </div>
+        <div id="balance-zone" class="panel balance-calculator">
+            <div class="calculator-head"><span>TURN PERFORMANCE</span><h3>BALANCE CALCULATOR</h3><p>We use both snapshots to calculate your performance for this round.</p></div>
+            <div class="balance-tabs">
+              <span class="tab" id="tab-pre">BALANCE PREVIO</span>
+              <span class="tab" id="tab-post">BALANCE POSTERIOR</span>
+            </div>
+            <p id="balance-label" class="calculator-label"></p>
+            <div class="balance-input-wrap"><span>$</span><input type="number" id="balance-input" placeholder="0.00" step="0.01" min="0" /></div>
+            <button class="primary calculator-submit" id="btn-balance">Enviar</button>
+        </div>
+      </div>
+
+      <div id="view-scoreboard" class="hidden">
+        <div class="panel">
+          <table class="scores">
+            <thead><tr><th>Jugador</th><th>Balance</th><th>Balance total</th></tr></thead>
+            <tbody id="score-rows"></tbody>
+          </table>
+          <button class="primary" id="btn-advance" style="margin-top:14px">Siguiente</button>
+        </div>
+      </div>
+
+      <div id="view-winner" class="hidden">
+        <p class="tagline" style="font-size:22px">EL MAESTRO DE LA RULETA ES</p>
+        <div class="winner-name" id="winner-name"></div>
+        <div class="panel">
+          <table class="scores">
+            <thead><tr><th>Jugador</th><th>Balance total</th></tr></thead>
+            <tbody id="final-rows"></tbody>
+          </table>
+        </div>
+        <button class="primary" onclick="location.reload()">Jugar de nuevo</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="/universal-i18n.js"></script>
+</body>
+</html>

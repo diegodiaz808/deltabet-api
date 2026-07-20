@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DeltaBet Play — social games for online casinos</title>
+  <link rel="icon" type="image/png" href="/assets/brand/deltabet-icon-red.png" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; background: #080808; color: #fff; min-height: 100vh; }
+    .site-header { min-height: 92px; padding: 16px clamp(20px, 5vw, 72px); background: #000; display: flex; align-items: center; justify-content: space-between; gap: 28px; border-bottom: 1px solid #242424; }
+    .brand-link { display: block; flex: 0 1 330px; }
+    .brand-logo { display: block; width: min(330px, 42vw); height: 58px; object-fit: contain; object-position: left center; }
+    .header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+    .header-button { position: relative; isolation: isolate; min-width: 112px; color: #fff; text-decoration: none; text-align: center; text-transform: uppercase; font-size: 11px; font-weight: 900; letter-spacing: 1px; border: 1px solid rgba(255,68,68,.58); border-radius: 14px; padding: 13px 18px; background: linear-gradient(145deg,#181818,#080808); box-shadow: inset 0 1px 0 rgba(255,255,255,.08),0 8px 22px rgba(0,0,0,.35); overflow: hidden; transition: transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+    .header-button::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(120deg,transparent 15%,rgba(224,32,32,.24),transparent 78%); transform:translateX(-110%); transition:transform .45s ease; }
+    .header-button::after { content:'›'; margin-left:9px; color:#ff5959; font-size:16px; line-height:0; }
+    .header-button:hover { transform: translateY(-2px); border-color:#ff5555; box-shadow: inset 0 1px 0 rgba(255,255,255,.12),0 10px 26px rgba(224,32,32,.2); }
+    .header-button:hover::before { transform:translateX(110%); }
+    .header-button.featured { background:linear-gradient(135deg,#ef2b2b,#a80d16); border-color:#ff5c62; box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 8px 24px rgba(224,32,32,.28); }
+    .header-button.featured::after { color:#fff; }
+    .hero { width: 100%; background: #9f1111; overflow: hidden; }
+    .hero img { display: block; width: 100%; height: auto; }
+    .games-section { background: linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.82)), url('/assets/brand/deltabet-pattern-red.jpg') center/cover fixed; padding: 48px 0 58px; }
+    .section-title { max-width: 1180px; margin: 0 auto 28px; padding: 0 24px; font-size: 30px; text-transform: uppercase; letter-spacing: 1px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .game { min-height: 430px; background: #151515; border: 2px solid #333; border-radius: 18px; overflow: hidden; text-decoration: none; color: #fff; display: flex; flex-direction: column; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+    .game:hover { border-color: #e02020; transform: translateY(-4px); box-shadow: 0 14px 34px rgba(0,0,0,.42); }
+    .game .thumb { height: 200px; flex: 0 0 200px; background-size: cover; background-position: center; }
+    .game .body { padding: 24px 28px 26px; display: flex; flex: 1; flex-direction: column; }
+    .game h3 { font-size: 27px; line-height: 1.1; }
+    .game p { color: #aaa; font-size: 18px; line-height: 1.4; margin-top: 12px; }
+    .soon { opacity: 0.45; pointer-events: none; }
+    .badge { display: block; align-self: center; min-width: 170px; font-size: 14px; font-weight: 1000; text-align: center; background: linear-gradient(135deg,#f02c2c,#a90d16); border:1px solid #ff5a61; border-radius: 13px; padding: 13px 30px; margin-top: auto; text-transform: uppercase; letter-spacing: 1.2px; box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 22px rgba(224,32,32,.2); transition:transform .2s ease,box-shadow .2s ease; }
+    .badge::after { content:'  →'; }
+    .game:hover .badge { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 11px 28px rgba(224,32,32,.32); }
+    .badge.gray { background: #444; }
+    @media (max-width: 760px) {
+      .site-header { align-items: flex-start; flex-direction: column; gap: 14px; padding-block: 14px 18px; }
+      .brand-link { flex-basis: auto; }
+      .brand-logo { width: min(310px, 84vw); height: 52px; }
+      .header-actions { width: 100%; justify-content: flex-start; gap: 8px; }
+      .header-button { padding: 9px 11px; font-size: 10px; }
+      .hero img { min-height: 0; height: auto; object-fit: contain; }
+      .grid { grid-template-columns: 1fr; gap: 20px; padding-inline: 16px; }
+      .game { min-height: 390px; }
+      .game .thumb { height: 175px; flex-basis: 175px; }
+      .game .body { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand-link" href="/" aria-label="Delta Bet — home">
+      <img class="brand-logo" src="/assets/brand/deltabet-horizontal-white.png" alt="Delta Bet" />
+    </a>
+    <nav class="header-actions" aria-label="Delta Bet information">
+      <a class="header-button featured" href="/demo/">Demo</a>
+      <a class="header-button" href="/api-info/">API</a>
+      <a class="header-button" href="/about/">About Delta Bet</a>
+    </nav>
+  </header>
+  <section class="hero" aria-label="Delta Bet introduction">
+    <img src="/assets/brand/deltabet-hero-layer.png" alt="A New Layer of Gamify for Online Casinos. DeltaBet isn't another casino game. It's a new way to play at it." />
+  </section>
+  <section class="games-section" id="games">
+    <h2 class="section-title">Delta Bet Games</h2>
+    <div class="grid">
+    <a class="game" href="/gods-roulette/">
+      <div class="thumb" style="background-image:url('/assets/gods-roulette/bg-main.png')"></div>
+      <div class="body">
+        <h3>God's Roulette</h3>
+        <p>Challenge your friends at roulette with random bets and limited spins.</p>
+        <span class="badge">Play</span>
+      </div>
+    </a>
+    <a class="game" href="/magic-island/">
+      <div class="thumb" style="background-image:url('/assets/magic-island/bg-island.png')"></div>
+      <div class="body">
+        <h3>Magic Island</h3>
+        <p>Travel the island through random slots and challenge conditions.</p>
+        <span class="badge">Play</span>
+      </div>
+    </a>
+    <a class="game" href="/vs-chat/">
+      <div class="thumb" style="background-image:url('/assets/vs-chat/bg-main-v2.png')"></div>
+      <div class="body">
+        <h3>VS Chat</h3>
+        <p>The streamer faces their chat with separate live challenge decks.</p>
+        <span class="badge">Play</span>
+      </div>
+    </a>
+    <a class="game" href="/delta-pick-keno/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/delta-pick-keno/background.png')"></div>
+      <div class="body"><h3>DeltaPick Keno</h3><p>Face another player through three rounds of randomized Keno challenges.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/delta-pick-bombs/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/delta-pick-bombs/background.png')"></div>
+      <div class="body"><h3>DeltaPick Bombs</h3><p>Compete through Bombs missions with balance performance scoring each round.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/keno-solo-run/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/keno-solo-run/background.png')"></div>
+      <div class="body"><h3>Keno Solo Run</h3><p>Complete five timed Keno missions and climb the global demo leaderboard.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/bombs-solo-run/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/bombs-solo-run/background.png')"></div>
+      <div class="body"><h3>Bombs Solo Run</h3><p>Clear a timed sequence of Bombs challenges and set your personal record.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/roulette-bingo/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/roulette-bingo/background.png')"></div>
+      <div class="body"><h3>Roulette Bingo</h3><p>Unique objective cards completed through roulette outcomes.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/bonus-duel/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/bonus-duel/background.png')"></div>
+      <div class="body"><h3>Bonus Duel</h3><p>A multiplier duel using the same slot bonus.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/road-to-millionaire/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/road-to-millionaire/background.png')"></div>
+      <div class="body"><h3>Road to Millionaire</h3><p>Twenty Blackjack wins to turn $1 into more than one million.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/everest/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/everest/background.png')"></div>
+      <div class="body"><h3>Everest</h3><p>Ten Crash levels with increasingly difficult survival targets.</p><span class="badge">Play</span></div>
+    </a>
+    <a class="game" href="/whole-ride/">
+      <div class="thumb" style="background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.3)),url('/assets/game-catalog/whole-ride/background.png')"></div>
+      <div class="body"><h3>Whole Ride</h3><p>A race through different casino games and objectives.</p><span class="badge">Play</span></div>
+    </a>
+    </div>
+  </section>
+</body>
+</html>

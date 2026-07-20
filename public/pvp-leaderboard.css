@@ -1,0 +1,20 @@
+/* One leaderboard language across every player-vs-player Delta Bet game. */
+#view-scoreboard .panel,#view-winner .panel{width:min(900px,100%);margin:0 auto;padding:18px 22px 22px!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:20px!important;background:linear-gradient(145deg,rgba(14,14,17,.98),rgba(3,3,4,.98))!important;box-shadow:0 20px 55px rgba(0,0,0,.42)!important}
+table.scores{width:100%!important;border-collapse:separate!important;border-spacing:0!important;overflow:hidden!important;border:1px solid #36363e!important;border-radius:16px!important;background:#09090b!important}
+table.scores thead{background:#121216!important}
+table.scores th{padding:12px 18px!important;background:#121216!important;border:0!important;border-bottom:1px solid #34343b!important;border-radius:0!important;color:#777!important;font-size:9px!important;font-weight:1000!important;letter-spacing:.11em!important;text-align:left!important;text-transform:uppercase!important}
+table.scores th:nth-child(n+2){text-align:right!important}
+table.scores tbody{counter-reset:pvp-rank}
+table.scores tbody tr{counter-increment:pvp-rank;background:linear-gradient(90deg,#111114,#0a0a0c)!important}
+table.scores tbody tr:first-child{background:linear-gradient(90deg,rgba(224,32,32,.23),rgba(28,12,14,.85) 48%,#0a0a0c)!important;box-shadow:inset 4px 0 #e02020}
+body.game-magic-island table.scores tbody tr:first-child{background:linear-gradient(90deg,rgba(53,224,47,.2),rgba(9,31,17,.85) 48%,#0a0a0c)!important;box-shadow:inset 4px 0 #35e02f}
+body:not(.game-gods-roulette):not(.game-magic-island) table.scores tbody tr:first-child{background:linear-gradient(90deg,rgba(255,75,75,.18),rgba(17,29,55,.75) 62%,#0a0a0c)!important}
+table.scores td{position:relative;padding:17px 18px!important;background:transparent!important;border:0!important;border-bottom:1px solid #29292f!important;font-size:17px!important;font-weight:850!important;font-variant-numeric:tabular-nums!important}
+table.scores tr:last-child td{border-bottom:0!important}
+table.scores td:first-child{padding-left:78px!important}
+table.scores td:first-child::before{content:counter(pvp-rank);position:absolute;left:18px;top:50%;width:38px;height:38px;display:grid;place-items:center;transform:translateY(-50%);border:1px solid #3c3c43;border-radius:12px;background:#1c1c21;color:#999;font-size:14px;font-weight:1000}
+table.scores tr:first-child td:first-child::before{content:'★';border-color:#ff555b;background:linear-gradient(145deg,#e02020,#7e0f14);color:#fff;box-shadow:0 7px 18px rgba(224,32,32,.22)}
+body.game-magic-island table.scores tr:first-child td:first-child::before{border-color:#63ed75;background:linear-gradient(145deg,#2bc54b,#11652b);box-shadow:0 7px 18px rgba(53,224,47,.2)}
+table.scores td:nth-child(n+2){text-align:right!important;font-size:20px!important}
+#view-scoreboard #btn-advance{display:block;width:min(430px,100%);min-height:54px;margin:18px auto 0!important;border-radius:15px!important}
+@media(max-width:700px){table.scores th,table.scores td{padding-inline:10px!important}table.scores td:first-child{padding-left:58px!important}table.scores td:first-child::before{left:10px;width:34px;height:34px}table.scores td:nth-child(n+2){font-size:15px!important}}

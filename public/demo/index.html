@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Delta Bet Casino Integration Demo</title>
+  <link rel="icon" type="image/png" href="/assets/brand/deltabet-icon-red.png">
+  <link rel="stylesheet" href="/demo/casino-demo.css">
+  <link rel="stylesheet" href="/demo/roulette-clean.css">
+  <link rel="stylesheet" href="/demo/road-demo.css">
+  <link rel="stylesheet" href="/demo/premium-dock.css">
+</head>
+<body>
+  <main class="casino-demo">
+    <header class="casino-topbar">
+      <a class="back-mark" href="/" aria-label="Back to the DeltaBet website" title="Back to DeltaBet">←</a>
+      <div class="casino-wordmark"><span aria-hidden="true">🐮</span><strong>MOOBET</strong><small>CONCEPT DEMO</small></div>
+      <label class="header-search">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" placeholder="Search games" aria-label="Search games">
+        <kbd>⌘ K</kbd>
+      </label>
+      <div class="top-actions">
+        <div class="wallet-balance"><small>AVAILABLE BALANCE</small><strong><span id="wallet-balance-value" class="wallet-amount">$840.00</span> <span class="wallet-currency">USDT</span></strong></div>
+        <button class="wallet-user" type="button"><span class="solana-mark">S</span><span><small>SOLANA WALLET</small><strong>7xKX...gTn</strong></span><i>⌄</i></button>
+        <button class="settings-action" aria-label="Settings" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <div class="casino-shell">
+      <aside class="casino-nav">
+        <button class="nav-home active" data-page="home"><span>⌂</span><strong>Home</strong></button>
+
+        <section class="nav-section">
+          <div class="nav-title"><span>🎰</span><strong>Casino</strong><i>⌃</i></div>
+          <button data-casino="originals"><span>🐮</span>Moobet games</button>
+          <button data-casino="popular"><span>🔥</span>Popular</button>
+          <button data-casino="new"><span>✨</span>New games</button>
+          <button data-casino="slots"><span>🍒</span>Slots</button>
+          <button data-casino="bonus"><span>🏷</span>Bonus buys</button>
+          <button data-casino="live"><span>🎥</span>Live casino</button>
+          <button class="casino-deltabet-link" data-page="deltabet"><img src="/assets/brand/deltabet-icon-red.png" alt=""><strong>DeltaBet Games</strong><em>ONLINE</em></button>
+          <button data-casino="roulette"><span>🎡</span>Roulette</button>
+          <button data-casino="blackjack"><span>🂡</span>Blackjack</button>
+          <button data-casino="baccarat"><span>♣</span>Baccarat</button>
+        </section>
+
+        <section class="nav-utilities">
+          <button><span>🏆</span>Sportsbook</button><button><span>↗</span>Predictions</button><button><span>％</span>Live RTP</button><button><span>👑</span>VIP Club</button>
+        </section>
+      </aside>
+
+      <section class="casino-workspace">
+        <div id="page-home" class="workspace-page casino-home">
+          <div class="lobby-banners">
+            <button class="lobby-banner casino-banner" type="button" data-casino="popular"><div><strong>Casino</strong><span>Thousands of games</span></div><div class="casino-banner-art"><i></i><b>♠</b><em>◆</em></div></button>
+            <button class="lobby-banner deltabet-banner" type="button" data-page="deltabet"><div><strong>DeltaBet Games</strong><span>Compete at the casino in a new way. Challenge your friend now!</span></div><img src="/assets/brand/deltabet-horizontal-white.png" alt="Delta Bet"></button>
+          </div>
+
+          <section class="lobby-row">
+            <header><h2>Moobet Originals</h2><div><button>View all</button><button>‹</button><button>›</button></div></header>
+            <div class="lobby-cards originals-row">
+              <article style="--art:linear-gradient(145deg,#ffbd00,#e56d00)"><b>🚀</b><strong>CRASH</strong><small>MOOBET</small></article>
+              <article style="--art:linear-gradient(145deg,#7338e8,#bb2cff)"><b>🂡</b><strong>BLACKJACK</strong><small>MOOBET</small></article>
+              <article style="--art:linear-gradient(145deg,#11112f,#213852)"><b>↕</b><strong>LIMBO</strong><small>MOOBET</small></article>
+              <article style="--art:linear-gradient(145deg,#fc2360,#ff6a28)"><b>⚄</b><strong>DICE</strong><small>MOOBET</small></article>
+              <article style="--art:linear-gradient(145deg,#211e4f,#503e88)"><b>🐔</b><strong>MISSION</strong><small>UNCROSSABLE</small></article>
+              <article style="--art:linear-gradient(145deg,#15143b,#40377c)"><b>◈</b><strong>KENO</strong><small>MOOBET</small></article>
+              <article style="--art:linear-gradient(145deg,#2f295b,#69568f)"><b>💣</b><strong>MINES</strong><small>MOOBET</small></article>
+            </div>
+          </section>
+
+          <section class="lobby-row popular-row">
+            <header><h2>Popular games</h2><div><button>View all</button><button>‹</button><button>›</button></div></header>
+            <div class="lobby-cards emoji-row">
+              <article style="--art:linear-gradient(145deg,#ef2d86,#ff7a44)"><b>🍭</b><strong>Sweet Bonanza</strong></article>
+              <article style="--art:linear-gradient(145deg,#5040aa,#f4b72f)"><b>⚡</b><strong>Gates of Olympus</strong></article>
+              <article style="--art:linear-gradient(145deg,#493026,#b34a31)"><b>🤠</b><strong>Wanted</strong></article>
+              <article style="--art:linear-gradient(145deg,#5d42d4,#f15db1)"><b>🍬</b><strong>Sugar Rush</strong></article>
+              <article style="--art:linear-gradient(145deg,#172445,#533766)"><b>💀</b><strong>The Crypt</strong></article>
+              <article style="--art:linear-gradient(145deg,#315430,#cb9a35)"><b>🦝</b><strong>Le Bandit</strong></article>
+              <article style="--art:linear-gradient(145deg,#a72825,#e58a2c)"><b>⚔️</b><strong>Gods of War</strong></article>
+            </div>
+          </section>
+        </div>
+
+        <div id="page-deltabet" class="workspace-page hidden">
+          <div class="catalog-heading"><div><span>CASINO SECTION</span><h1>Delta Bet games</h1><p>Three integration demos are now playable: God's Roulette, DeltaPick Keno and the solo Road to Millionaire challenge.</p></div><span class="api-connected"><i></i>Casino API connected</span></div>
+          <div class="delta-catalog" id="delta-catalog"></div>
+        </div>
+
+        <div id="page-keno-lobby" class="workspace-page hidden">
+          <div class="integrated-lobby keno-integrated-lobby">
+            <img class="integrated-game-logo" src="/assets/game-catalog/delta-pick-keno/logo.png" alt="DeltaPick Keno">
+            <h1>Pick your numbers. Outplay the table.</h1><p>Take turns across five rounds. The highest accumulated balance multiplier wins the match.</p>
+            <div class="integrated-lobby-grid">
+              <div class="keno-setup-stack">
+                <section class="keno-difficulty-card"><header><span>MATCH DIFFICULTY</span><strong>LOCKED FOR ALL 5 ROUNDS</strong></header><div class="keno-lobby-difficulty"><div class="difficulty-picker" aria-label="Match difficulty"><button type="button" data-difficulty="easy"><small>EASY</small><strong>3 numbers</strong></button><button type="button" data-difficulty="medium" class="active"><small>MEDIUM</small><strong>6 numbers</strong></button><button type="button" data-difficulty="hard"><small>HARD</small><strong>10 numbers</strong></button></div></div></section>
+                <section class="integrated-players keno-player-card"><header><span>PLAYERS</span><strong>INFO</strong></header><div class="integrated-player-row keno-player-row"><input value="River912" maxlength="18"><span>Wallet player</span></div><div class="integrated-player-row keno-player-row"><input value="LunaPeak" maxlength="18"><span>Challenger</span></div><button id="add-keno-player" type="button">Add a player</button></section>
+              </div>
+              <nav class="integrated-lobby-menu"><button id="start-keno-demo" type="button">Play</button><button id="keno-lobby-instructions" type="button">Instructions</button><button data-page="deltabet" type="button">More games</button></nav>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-roulette-lobby" class="workspace-page hidden">
+          <div class="integrated-lobby roulette-integrated-lobby">
+            <img class="integrated-game-logo" src="/assets/gods-roulette/logo.png" alt="God's Roulette">
+            <h1>Challenge a friend. Master the wheel.</h1><p>Take turns, complete verified roulette bets and finish the match on top.</p>
+            <div class="integrated-lobby-grid">
+              <section class="integrated-players"><header><span>PLAYERS</span><strong>INFO</strong></header><div class="integrated-player-row"><input id="roulette-player-one" value="River912" maxlength="18"><span>Wallet player</span></div><div class="integrated-player-row"><input id="roulette-player-two" value="LunaPeak" maxlength="18"><span>Challenger</span></div><button id="add-roulette-player" type="button">Add a player</button></section>
+              <nav class="integrated-lobby-menu"><button id="start-roulette-demo" type="button">Play</button><button id="roulette-lobby-instructions" type="button">Instructions</button><button data-page="deltabet" type="button">More games</button></nav>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-road-lobby" class="workspace-page hidden">
+          <div class="integrated-lobby road-integrated-lobby">
+            <img class="integrated-game-logo" src="/assets/game-catalog/road-to-millionaire/logo.png" alt="Road to Millionaire">
+            <h1>Twenty wins. One millionaire run.</h1><p>Start with $1 and climb the verified Blackjack ladder one hand at a time.</p>
+            <div class="road-lobby-summary"><div><small>FORMAT</small><strong>Solo challenge</strong></div><div><small>JOURNEY</small><strong>20 verified hands</strong></div><div><small>FINAL TARGET</small><strong>$1,048,576</strong></div></div>
+            <div class="road-lobby-actions"><button id="start-road-demo" type="button">Play</button><button data-page="deltabet" type="button">More games</button></div>
+          </div>
+        </div>
+
+        <div id="page-delta-game" class="workspace-page hidden">
+          <div class="delta-game-screen">
+            <img src="/assets/game-catalog/delta-pick-keno/logo.png" alt="DeltaPick Keno">
+            <span class="delta-kicker" id="delta-kicker">DELTAPICK KENO · PVP MATCH</span>
+            <h1 id="keno-turn-title">River912's turn</h1>
+            <p id="delta-run-copy">Round 1 of 5 · Play the assigned selection inside Moobet Keno.</p>
+            <div class="keno-turn-assignment"><div class="assigned-ticket"><small>ASSIGNED NUMBERS</small><div id="assigned-numbers"></div></div><div class="keno-shot-card"><small>REQUIRED</small><strong id="keno-required-shots">1</strong><span>SHOTS</span><em>Same numbers every shot</em></div></div>
+            <div class="delta-run-stats"><div><small>PLAYER</small><strong id="keno-current-player">River912</strong></div><div><small>ROUND</small><strong id="keno-current-round">1 / 5</strong></div><div><small>STARTING BALANCE</small><strong id="keno-starting-balance">$840.00</strong></div><div><small>STATUS</small><strong id="delta-status">Ready</strong></div></div>
+            <div class="delta-run-actions">
+              <button id="open-casino-game" type="button">Open casino Keno <b>→</b></button>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-casino-game" class="workspace-page hidden">
+          <section class="real-game-frame">
+            <div class="keno-controls"><div class="keno-tabs"><strong>Manual</strong><span>Auto</span></div><label>Bet amount<div class="keno-bet">$ 5.00 <span>½&nbsp;&nbsp; 2× &nbsp;&nbsp;Max</span></div></label><label>Risk</label><div class="keno-risk"><span>Classic</span><span>Low</span><span class="active">Medium</span><span>High</span></div><button>Auto pick</button><button>Clear table</button><button id="play-ticket" class="keno-start">Start game</button></div>
+            <div class="keno-board-wrap"><div class="keno-board" id="keno-board"></div><div id="keno-board-result" class="keno-board-result hidden"><small id="keno-board-result-label">SHOT RESULT</small><strong id="keno-board-result-x">0.00X</strong><span id="keno-board-result-money">$0.00 RETURN</span></div><section id="keno-shot-math" class="keno-shot-math hidden"><span><small>SHOT</small><strong id="keno-math-shot">1 / 4</strong></span><b>·</b><span><small>CHALLENGE HITS</small><strong id="keno-math-hits">0 / 6</strong></span><b>·</b><span><small>RETURN ÷ BET</small><strong><i id="keno-math-return">$0.00</i> ÷ $5</strong></span><b>=</b><span><small>SHOT MULTIPLIER</small><strong id="keno-math-payout">0.00X</strong></span><b>→</b><span class="keno-turn-x"><small>TURN PERFORMANCE</small><strong id="keno-math-turn">1.000X</strong></span></section><p>Red numbers were drawn · Purple numbers belong to the challenge · Green gems are challenge hits</p></div>
+            <button id="challenge-notification" class="challenge-notification hidden"><span>✓</span><div><small>TURN VERIFIED</small><strong>DeltaPick Keno turn complete</strong><p>Click to return to Delta Bet and continue the match.</p></div><b>→</b></button>
+          </section>
+
+          <nav class="delta-game-bar premium-game-bar keno-game-bar">
+            <div class="bar-brand"><img src="/assets/brand/deltabet-horizontal-white.png" alt="Delta Bet"><span>LIVE CHALLENGE</span></div>
+            <div><small>CURRENT PLAYER</small><strong id="keno-bar-player">River912</strong></div><div><small>NUMBERS</small><strong id="bar-numbers">—</strong></div><div class="dock-progress"><small>SHOTS</small><strong id="bar-progress">0 / 1</strong></div><div><small>ROUND</small><strong id="bar-round">1 / 5</strong></div><div><small>LIVE BALANCE</small><strong id="bar-balance">$840.00</strong></div>
+          </nav>
+        </div>
+
+        <div id="page-roulette-delta" class="workspace-page hidden">
+          <div class="roulette-delta-screen">
+            <img src="/assets/gods-roulette/logo.png" alt="God's Roulette">
+            <span class="roulette-kicker">GOD'S ROULETTE · PVP MATCH</span>
+            <h1 id="roulette-turn-title">River912's turn</h1>
+            <p id="roulette-turn-subtitle">Round 1 of 5 · Complete the assigned bet inside Moobet Roulette.</p>
+            <section class="roulette-challenge-card">
+              <div><small>YOUR BET</small><strong id="roulette-bet-name">Bet on red</strong><p id="roulette-bet-detail">Place a $5 bet on RED for every spin.</p><div class="roulette-challenge-board" id="roulette-challenge-board"></div></div>
+              <div class="roulette-spin-count"><small>REQUIRED</small><strong id="roulette-required-spins">3</strong><span>SPINS</span></div>
+            </section>
+            <div class="roulette-match-stats"><div><small>PLAYER</small><strong id="roulette-player">River912</strong></div><div><small>ROUND</small><strong id="roulette-round">1 / 5</strong></div><div><small>STARTING BALANCE</small><strong id="roulette-starting-balance">$840.00</strong></div><div><small>STATUS</small><strong id="roulette-status">Ready</strong></div></div>
+            <button id="open-casino-roulette" type="button">Open Moobet Roulette <b>→</b></button>
+          </div>
+        </div>
+
+        <div id="page-roulette-casino" class="workspace-page hidden">
+          <section class="roulette-game-frame">
+            <div class="roulette-play-area">
+              <div class="roulette-wheel-shell"><div class="roulette-wheel"><span id="roulette-result-number">?</span></div></div>
+              <div class="roulette-results-strip"><small>LAST RESULTS</small><div class="roulette-last-results" id="roulette-last-results"><em>Spin to reveal the first result</em></div></div>
+              <div class="roulette-board" id="roulette-board"></div>
+              <button id="spin-roulette" type="button">Spin roulette</button>
+            </div>
+            <button id="roulette-notification" class="challenge-notification hidden"><span>✓</span><div><small>CHALLENGE VERIFIED</small><strong>God's Roulette turn complete</strong><p>Click to return to DeltaBet and continue the match.</p></div><b>→</b></button>
+          </section>
+          <nav class="delta-game-bar premium-game-bar roulette-game-bar">
+            <div class="bar-brand"><img src="/assets/brand/deltabet-horizontal-white.png" alt="Delta Bet"><span>LIVE PVP MATCH</span></div>
+            <div><small>CURRENT PLAYER</small><strong id="roulette-bar-player">River912</strong></div><div><small>ASSIGNED BET</small><strong id="roulette-bar-bet">RED · $5</strong></div><div class="dock-progress"><small>SPINS</small><strong id="roulette-bar-spins">0 / 3</strong></div><div><small>ROUND</small><strong id="roulette-bar-round">1 / 5</strong></div><div><small>LIVE BALANCE</small><strong id="roulette-bar-balance">$840.00</strong></div>
+          </nav>
+        </div>
+
+        <div id="page-roulette-result" class="workspace-page hidden">
+          <div class="roulette-result-screen turn-result-compact">
+            <span class="verified-seal">✓</span><small>TURN VERIFIED BY MOOBET</small><h1>Turn complete</h1>
+            <div class="roulette-turn-performance"><small id="roulette-result-player">RIVER912 · ROUND 1</small><strong id="roulette-performance">1.000X</strong><span id="roulette-result-balances">$840.00 → $840.00</span></div>
+            <button id="next-roulette-turn" type="button">Start next player's turn <b>→</b></button>
+          </div>
+        </div>
+
+        <div id="page-result" class="workspace-page hidden">
+          <div class="roulette-result-screen keno-result-screen turn-result-compact"><span class="verified-seal">✓</span><small>TURN VERIFIED BY MOOBET</small><h1>Turn complete</h1><div class="roulette-turn-performance"><small id="keno-result-player">RIVER912 · ROUND 1</small><strong id="keno-multiplier">1.000X</strong><span id="keno-result-balances">$840.00 → $840.00</span><em id="keno-result-outcome">NO RETURN</em></div><button id="next-keno-turn" type="button">Start next player's turn <b>→</b></button></div>
+        </div>
+
+        <div id="page-road-game" class="workspace-page hidden">
+          <div class="road-screen">
+            <header class="road-hero"><img src="/assets/game-catalog/road-to-millionaire/logo.png" alt="Road to Millionaire"><div><small>SOLO BLACKJACK CHALLENGE</small><h1>One hand. One step closer.</h1><p>Win the next verified Blackjack hand to double your challenge bankroll and unlock the next step.</p></div></header>
+            <div class="road-layout">
+              <section class="road-journey">
+                <div class="road-current"><div><small>CURRENT STEP</small><strong id="road-step-label">Step 1 of 20</strong></div><div><small>CHALLENGE BANKROLL</small><strong id="road-bankroll">$1</strong></div><div><small>NEXT TARGET</small><strong id="road-next-target">$2</strong></div></div>
+                <div class="road-track" id="road-track"></div>
+                <div class="road-next-card"><span id="road-step-number">01</span><div><small>YOUR NEXT MOVE</small><h2 id="road-next-title">Win a $1 Blackjack hand</h2><p id="road-next-copy">Your result is verified automatically by Moobet. Win to advance; lose and the run resets.</p></div><b>→ $2</b></div>
+                <button id="open-road-blackjack" type="button">Open Moobet Blackjack <b>→</b></button>
+              </section>
+              <aside class="road-side"><small>LIVE SOLO RUN</small><h2>Global leaderboard</h2><div class="road-rank"><span>1</span><strong>CardShark</strong><b>20 / 20</b></div><div class="road-rank"><span>2</span><strong>RiverAce</strong><b>18 / 20</b></div><div class="road-rank"><span>3</span><strong>BlackMoo</strong><b>16 / 20</b></div><div class="road-player-rank"><small>YOUR POSITION</small><strong>River912</strong><b id="road-rank-progress">0 / 20</b></div></aside>
+            </div>
+          </div>
+        </div>
+
+        <div id="page-road-casino" class="workspace-page hidden">
+          <section class="blackjack-frame">
+            <div class="blackjack-table">
+              <div class="blackjack-brand"><span>♠</span><strong>MOOBET BLACKJACK</strong></div>
+              <div class="blackjack-hand dealer-hand"><small>DEALER</small><div id="road-dealer-cards"><i>?</i><i>?</i></div></div>
+              <div class="blackjack-center"><span id="road-hand-status">PLACE YOUR CHALLENGE BET</span><strong id="road-casino-stake">$1</strong></div>
+              <div class="blackjack-hand player-hand"><small>YOUR HAND</small><div id="road-player-cards"><i>?</i><i>?</i></div></div>
+              <button id="play-road-hand" type="button">Deal verified hand</button>
+            </div>
+            <button id="road-notification" class="challenge-notification hidden"><span>✓</span><div><small id="road-notification-kicker">HAND VERIFIED</small><strong id="road-notification-title">Step complete</strong><p id="road-notification-copy">Return to DeltaBet to unlock the next step.</p></div><b>→</b></button>
+          </section>
+          <nav class="delta-game-bar premium-game-bar road-game-bar"><div class="bar-brand"><img src="/assets/brand/deltabet-horizontal-white.png" alt="Delta Bet"><span>SOLO CHALLENGE</span></div><div><small>PLAYER</small><strong>River912</strong></div><div class="dock-progress"><small>CURRENT STEP</small><strong id="road-bar-step">1 / 20</strong></div><div><small>CHALLENGE BET</small><strong id="road-bar-bet">$1</strong></div><div><small>NEXT TARGET</small><strong id="road-bar-target">$2</strong></div><div><small>STATUS</small><strong id="road-bar-status">READY</strong></div></nav>
+        </div>
+
+        <div id="page-match-moment" class="workspace-page hidden">
+          <div class="match-moment" id="match-moment">
+            <div class="celebration-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="moment-kicker" id="moment-kicker">ROUND COMPLETE</span>
+            <div class="moment-trophy" id="moment-trophy">◆</div>
+            <h1 id="moment-title">Round 1 complete</h1>
+            <p id="moment-copy">The leaderboard has changed. Get ready for the next round.</p>
+            <section class="moment-standings" id="moment-standings"></section>
+            <button id="continue-match" type="button">Start round 2 <b>→</b></button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="/demo/casino-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+const DP_GAME = document.body.dataset.game;
+const DP_LANG = new URLSearchParams(location.search).get('lang') === 'es' ? 'es' : 'en';
+const byId = (id) => document.getElementById(id);
+const shuffled = (items) => [...items].sort(() => Math.random() - .5);
+const safeName = (value) => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const TEXT = {
+  en: {
+    player1:'Player 1', player2:'Player 2', player:'Player name', difficulty:'Difficulty', startMatch:'Start match', restartMatch:'Restart match',
+    startRun:'Start run', restartRun:'Restart run', raceAgain:'Race again', round:'Round', turn:'Turn', time:'Time', best:'Personal best', rank:'Demo rank',
+    before:'Balance before', after:'Balance after', saveBefore:'Save balance before', saveAfter:'Save balance after & score', internal:'Match leaderboard', performance:'Performance', total:'Total',
+    calculator:'Turn balance', calculatorEyebrow:'Verified sequence', calculatorHelp:'Save the starting balance first. The final balance unlocks only after that snapshot is recorded.',
+    playCasino:'Starting balance saved. Play the assigned Keno ticket in the casino, then return to enter the final balance.', beforeFirst:'Enter and save your casino balance before playing.', chooseMatch:'Add two players and start the match.',
+    chooseRun:'Choose a difficulty and start your solo run.', running:'The timer is running. Complete the stages in order.', completed:'Run completed',
+    fastest:'Fastest Players', demo:'Demo data', global:'Global leaderboard', you:'YOU', stage:'Stage', resultError:'Enter valid balances greater than zero.',
+    matchFinished:'Match finished', winner:'Winner', kenoTitle:'Keno ticket', bombsTitle:'Bombs map', selections:'Picks', boardSize:'40-number board', safeCells:'Safe cells', bombs:'Bombs', locked:'Locked until balance before is saved', turnComplete:'Turn complete', nextTurn:'Play next player turn', nextRound:'Start next round', playAgain:'Play again', turnResult:'Turn result',
+  },
+  es: {
+    player1:'Jugador 1', player2:'Jugador 2', player:'Nombre del jugador', difficulty:'Dificultad', startMatch:'Empezar partida', restartMatch:'Reiniciar partida',
+    startRun:'Empezar recorrido', restartRun:'Reiniciar recorrido', raceAgain:'Correr de nuevo', round:'Round', turn:'Turno', time:'Tiempo', best:'Récord personal', rank:'Ranking demo',
+    before:'Balance previo', after:'Balance posterior', saveBefore:'Guardar balance previo', saveAfter:'Guardar balance posterior y calcular', internal:'Leaderboard de la partida', performance:'Performance', total:'Total',
+    calculator:'Balance del turno', calculatorEyebrow:'Secuencia verificada', calculatorHelp:'Primero guardá el balance inicial. El balance posterior se habilita únicamente después de registrar ese snapshot.',
+    playCasino:'Balance inicial guardado. Jugá el ticket asignado en el casino y después volvé para ingresar el balance final.', beforeFirst:'Ingresá y guardá tu balance del casino antes de jugar.', chooseMatch:'Agregá dos jugadores y empezá la partida.',
+    chooseRun:'Elegí una dificultad y empezá tu Solo Run.', running:'El reloj está corriendo. Completá las etapas en orden.', completed:'Recorrido completado',
+    fastest:'Jugadores más rápidos', demo:'Datos demo', global:'Leaderboard global', you:'VOS', stage:'Etapa', resultError:'Ingresá balances válidos mayores a cero.',
+    matchFinished:'Partida terminada', winner:'Ganador', kenoTitle:'Ticket de Keno', bombsTitle:'Mapa de Bombs', selections:'Elegidos', boardSize:'Tablero de 40 números', safeCells:'Celdas seguras', bombs:'Bombas', locked:'Bloqueado hasta guardar el balance previo', turnComplete:'Turno completado', nextTurn:'Jugar turno del siguiente jugador', nextRound:'Empezar siguiente round', playAgain:'Jugar de nuevo', turnResult:'Resultado del turno',
+  }
+};
+const tx = TEXT[DP_LANG];
+const isKeno = DP_GAME.includes('keno');
+const isSolo = DP_GAME.includes('solo-run');
+const gameTitle = isKeno ? (isSolo ? 'Keno Solo Run' : 'DeltaPick Keno') : (isSolo ? 'Bombs Solo Run' : 'DeltaPick Bombs');
+document.documentElement.lang = DP_LANG;
+document.title = `${gameTitle} — Delta Bet`;
+byId('game-name').textContent = gameTitle;
+byId('title').textContent = gameTitle;
+document.querySelector('.hero')?.insertAdjacentHTML('afterbegin', `<img class="game-hero-logo" src="/assets/game-catalog/${DP_GAME}/logo.png" alt="${gameTitle}">`);
+byId('lead').textContent = isSolo
+  ? (DP_LANG === 'es' ? `Completá una serie de challenges de ${isKeno ? 'Keno' : 'Bombs'} y competí por el mejor tiempo.` : `Complete a series of ${isKeno ? 'Keno' : 'Bombs'} challenges and compete for the fastest time.`)
+  : (DP_LANG === 'es' ? `Enfrentá a otro jugador con challenges de ${isKeno ? 'Keno' : 'Bombs'} y compará la performance de cada round.` : `Face another player with ${isKeno ? 'Keno' : 'Bombs'} challenges and compare performance each round.`);
+
+function formatTime(ms) {
+  const units = Math.max(0, Math.round(ms / 10));
+  const minutes = Math.floor(units / 6000), seconds = Math.floor((units % 6000) / 100), hundredths = units % 100;
+  return `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}.${String(hundredths).padStart(2,'0')}`;
+}
+
+function challenge(difficulty='medium') {
+  if (isKeno) {
+    const count = {easy:3,medium:5,hard:8,extreme:10}[difficulty];
+    const selected = shuffled(Array.from({length:40},(_,i)=>i+1)).slice(0,count);
+    return { title:tx.kenoTitle, detail:`${tx.boardSize} · ${tx.selections}: ${count}`, board:`<div class="dp-board keno">${Array.from({length:40},(_,i)=>`<div class="dp-cell ${selected.includes(i+1)?'selected':''}">${i+1}</div>`).join('')}</div>` };
+  }
+  const safe = {easy:2,medium:4,hard:6,extreme:8}[difficulty];
+  const bombCount = {easy:3,medium:5,hard:7,extreme:9}[difficulty];
+  const selected = shuffled(Array.from({length:25},(_,i)=>i)).slice(0,safe);
+  return { title:tx.bombsTitle, detail:`${tx.safeCells}: ${safe} · ${tx.bombs}: ${bombCount}`, board:`<div class="dp-board bombs">${Array.from({length:25},(_,i)=>`<div class="dp-cell ${selected.includes(i)?'selected':''}">${String.fromCharCode(65+Math.floor(i/5))}${i%5+1}</div>`).join('')}</div>` };
+}
+
+function initPvp() {
+  byId('app').innerHTML = `<div class="dp-layout"><div class="dp-setup"><label>${tx.player1}<input id="p1" value="Player 1" maxlength="18"></label><label>${tx.player2}<input id="p2" value="Player 2" maxlength="18"></label><label>${tx.difficulty}<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="extreme">Extreme</option></select></label><button id="start">${tx.startMatch}</button></div><div class="status" id="status">${tx.chooseMatch}</div><div id="match" class="hidden"><div class="dp-hud"><div class="metric"><small>${tx.round}</small><strong id="round">1 / 3</strong></div><div class="metric"><small>${tx.turn}</small><strong id="turn">—</strong></div><div class="metric"><small>${tx.stage}</small><strong id="progress">1 / 6</strong></div></div><div class="dp-challenge" id="challenge"></div><section class="dp-balance" data-phase="before" aria-labelledby="dp-calculator-title"><div class="dp-calculator-head"><span>${tx.calculatorEyebrow}</span><h2 id="dp-calculator-title">${tx.calculator}</h2><p>${tx.calculatorHelp}</p></div><div class="dp-phase-rail"><div class="dp-phase-step is-active" data-step="before"><b>1</b><span>${tx.before}</span></div><i></i><div class="dp-phase-step is-locked" data-step="after"><b>2</b><span>${tx.after}</span></div></div><div class="dp-snapshots"><label class="dp-snapshot is-active" data-snapshot="before"><b>1</b><span><small>${tx.before}</small><span class="dp-money"><i>$</i><input id="pre" type="number" min="0.01" step="0.01" placeholder="0.00"></span></span></label><label class="dp-snapshot is-locked" data-snapshot="after"><b>2</b><span><small>${tx.after}</small><span class="dp-money"><i>$</i><input id="post" type="number" min="0" step="0.01" placeholder="0.00" disabled></span><em>${tx.locked}</em></span></label></div><button id="submit" class="dp-calculate">${tx.saveBefore}<span>→</span></button></section><section class="dp-ranking hidden"><div class="dp-result-head"><span>${tx.turnResult}</span><strong id="turn-score">—</strong></div><h2 class="board-title">${tx.internal}</h2><div id="scoreboard"></div><button id="next-turn" class="dp-next-turn">${tx.nextTurn}<span>→</span></button></section></div></div>`;
+  let players=[], turnIndex=0, round=1, finished=false;
+  const renderScores=()=>{const ranked=players.map((p,playerIndex)=>({...p,playerIndex})).sort((a,b)=>b.total-a.total);byId('scoreboard').innerHTML=`<div class="pvp-leaderboard"><div class="pvp-leaderboard-head"><span>Rank</span><span>${tx.player}</span><span>${tx.performance}</span><span>${tx.total}</span></div>${ranked.map((p,rank)=>`<div class="pvp-leaderboard-row ${rank===0?'is-leader':''} ${!finished&&p.playerIndex===turnIndex?'is-current':''}"><span class="pvp-rank">${rank===0?'★':rank+1}</span><span class="pvp-player"><i>${safeName(p.name).slice(0,1).toUpperCase()}</i><strong>${safeName(p.name)}</strong>${p.playerIndex===turnIndex?'<small>CURRENT</small>':''}</span><strong class="pvp-last ${p.last>=0?'score-pos':'score-neg'}">${p.scores.length?(p.last>=0?'+':'')+p.last.toFixed(2)+'%':'—'}</strong><strong class="pvp-total ${p.total>=0?'score-pos':'score-neg'}">${p.total>=0?'+':''}${p.total.toFixed(2)}%</strong></div>`).join('')}</div>`;};
+  const setPhase=(phase)=>{const balance=document.querySelector('.dp-balance');balance.dataset.phase=phase;document.querySelector('[data-step="before"]').className=`dp-phase-step ${phase==='before'?'is-active':'is-done'}`;document.querySelector('[data-step="after"]').className=`dp-phase-step ${phase==='after'?'is-active':'is-locked'}`;document.querySelector('[data-snapshot="before"]').className=`dp-snapshot ${phase==='before'?'is-active':'is-done'}`;document.querySelector('[data-snapshot="after"]').className=`dp-snapshot ${phase==='after'?'is-active':'is-locked'}`;byId('pre').disabled=phase!=='before';byId('post').disabled=phase!=='after';document.querySelector('[data-snapshot="after"] em').hidden=phase==='after';byId('submit').innerHTML=`${phase==='before'?tx.saveBefore:tx.saveAfter}<span>→</span>`;};
+  const nextChallenge=()=>{ const c=challenge(byId('difficulty').value);byId('match').classList.remove('result-stage');document.querySelector('.dp-ranking').classList.add('hidden');byId('challenge').classList.remove('hidden');document.querySelector('.dp-balance').classList.remove('hidden');byId('round').textContent=`${round} / 3`; byId('turn').textContent=players[turnIndex].name; byId('progress').textContent=`${(round-1)*2+turnIndex+1} / 6`; byId('challenge').innerHTML=`<div class="dp-ticket-head"><span>${isKeno?'40':'5 × 5'}</span><div><h2>${c.title}</h2><p>${c.detail}</p></div></div>${c.board}`; byId('status').textContent=tx.beforeFirst; byId('pre').value=''; byId('post').value='';setPhase('before');renderScores(); };
+  const showTurnResult=()=>{const p=players[turnIndex];byId('challenge').classList.add('hidden');document.querySelector('.dp-balance').classList.add('hidden');byId('match').classList.add('result-stage');document.querySelector('.dp-ranking').classList.remove('hidden');byId('turn-score').textContent=`${p.last>=0?'+':''}${p.last.toFixed(2)}%`;byId('turn-score').className=p.last>=0?'score-pos':'score-neg';byId('status').textContent=`${tx.turnComplete} · ${p.name}: ${p.last>=0?'+':''}${p.last.toFixed(2)}%`;byId('next-turn').textContent=turnIndex===0?tx.nextTurn:(round<3?tx.nextRound:tx.matchFinished);renderScores();};
+  byId('start').onclick=()=>{ players=[byId('p1').value.trim()||tx.player1,byId('p2').value.trim()||tx.player2].map(name=>({name,scores:[],last:0,total:0})); turnIndex=0;round=1;finished=false;document.body.classList.add('game-running');byId('submit').disabled=false;byId('match').classList.remove('hidden');byId('start').textContent=tx.restartMatch;nextChallenge(); };
+  byId('submit').onclick=()=>{const phase=document.querySelector('.dp-balance').dataset.phase;const pre=Number(byId('pre').value);if(phase==='before'){if(!(pre>0)){byId('status').textContent=tx.resultError;return;}setPhase('after');byId('status').textContent=tx.playCasino;byId('post').focus();return;}const post=Number(byId('post').value);if(!(pre>0)||post<0||!Number.isFinite(post)){byId('status').textContent=tx.resultError;return;}const p=players[turnIndex];p.last=((post-pre)/pre)*100;p.scores.push(p.last);p.total+=p.last;showTurnResult();};
+  byId('next-turn').onclick=()=>{if(turnIndex===0){turnIndex=1;nextChallenge();return;}if(round<3){round++;turnIndex=0;nextChallenge();return;}finished=true;const winner=[...players].sort((a,b)=>b.total-a.total)[0];byId('status').textContent=`${tx.matchFinished} · ${tx.winner}: ${winner.name}`;byId('turn-score').textContent=`${winner.name} · ${winner.total>=0?'+':''}${winner.total.toFixed(2)}%`;byId('next-turn').textContent=tx.playAgain;byId('next-turn').onclick=()=>byId('start').click();renderScores();};
+}
+
+function initSolo() {
+  byId('app').innerHTML=`<div class="dp-layout"><div class="dp-setup"><label>${tx.player}<input id="solo-player" value="You" maxlength="18"></label><label>${tx.difficulty}<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="extreme">Extreme</option></select></label><button id="start">${tx.startRun}</button></div><div class="dp-hud"><div class="metric"><small>${tx.time}</small><strong id="timer">00:00.00</strong></div><div class="metric"><small>${tx.best}</small><strong id="best">—</strong></div><div class="metric"><small>${tx.rank}</small><strong id="rank">—</strong></div></div><div class="status" id="status">${tx.chooseRun}</div><div class="solo-route" id="route"></div><section class="leaderboard"><div class="leaderboard-head"><div><span class="leaderboard-kicker">${tx.global}</span><h2>${tx.fastest}</h2></div><span class="demo-badge">${tx.demo}</span></div><div class="leaderboard-list" id="leaderboard"></div></section></div>`;
+  const demoBase=isKeno?[['KenoKing',74620],['LunaPick',81240],['RNGMia',87980],['Nico40',95610],['LuckyTom',104380],['SofiHits',113760]]:[['SafeMia',88540],['BombBoss',94720],['LunaGrid',102860],['NicoSafe',111430],['LuckyTom',119780],['SofiRun',128640]];
+  let running=false,frame=0,startAt=0,simulated=0,stages=[],entry=null,difficulty='medium';
+  const elapsed=()=>simulated+(running?performance.now()-startAt:0);
+  const paint=()=>{byId('timer').textContent=formatTime(elapsed());if(running)frame=requestAnimationFrame(paint);};
+  const key=()=>`deltabet-${DP_GAME}-${difficulty}-best`;
+  const getBest=()=>{try{return Number(localStorage.getItem(key()))||0}catch{return 0}};
+  const board=()=>{const modifier={easy:.9,medium:1,hard:1.12,extreme:1.25}[difficulty];const entries=demoBase.map(([name,time])=>({name,time:Math.round(time*modifier),demo:true}));if(entry)entries.push(entry);entries.sort((a,b)=>a.time-b.time);byId('leaderboard').innerHTML=entries.map((e,i)=>`<div class="leaderboard-row ${e.demo?'':'is-player'}"><span class="leaderboard-rank">${i+1}</span><span class="leaderboard-player"><i>${e.name[0].toUpperCase()}</i><strong>${safeName(e.name)}</strong>${e.demo?'':`<small>${tx.you}</small>`}</span><time>${formatTime(e.time)}</time></div>`).join('');if(entry)byId('rank').textContent=`#${entries.indexOf(entry)+1}`;};
+  const preview=()=>{difficulty=byId('difficulty').value;const range=isKeno?[13000,21000]:[16000,24000];stages=Array.from({length:5},()=>({challenge:challenge(difficulty),time:Math.round((range[0]+Math.random()*(range[1]-range[0]))/10)*10}));byId('route').innerHTML=stages.map((s,i)=>`<button class="solo-stage" data-step="${i}" disabled><b>${i+1}</b><span><strong>${s.challenge.title}</strong><small>${s.challenge.detail}</small></span><em>+${formatTime(s.time).slice(0,5)}</em></button>`).join('');entry=null;byId('rank').textContent='—';const best=getBest();byId('best').textContent=best?formatTime(best):'—';board();};
+  const finish=()=>{simulated=elapsed();running=false;cancelAnimationFrame(frame);byId('timer').textContent=formatTime(simulated);entry={name:byId('solo-player').value.trim()||'You',time:simulated,demo:false};const best=getBest();if(!best||simulated<best){try{localStorage.setItem(key(),String(simulated))}catch{}}byId('best').textContent=formatTime(Math.min(best||simulated,simulated));board();byId('status').textContent=`${tx.completed}: ${formatTime(simulated)} · #${byId('rank').textContent.replace('#','')}`;byId('start').textContent=tx.raceAgain;};
+  byId('start').onclick=()=>{cancelAnimationFrame(frame);running=false;simulated=0;byId('timer').textContent='00:00.00';preview();document.querySelectorAll('.solo-stage').forEach((button,index)=>{button.disabled=false;button.onclick=()=>{if(!running||index!==document.querySelectorAll('.solo-stage.done').length)return;simulated=elapsed()+stages[index].time;startAt=performance.now();button.classList.add('done');button.disabled=true;if(index===stages.length-1)finish();};});running=true;startAt=performance.now();byId('status').textContent=tx.running;byId('start').textContent=tx.restartRun;paint();};
+  byId('difficulty').onchange=()=>{if(running)return;preview();};preview();
+}
+
+if (isSolo) initSolo(); else initPvp();

@@ -1,0 +1,87 @@
+/* Shared live DeltaBet dock used by all three integrated games. */
+.premium-game-bar{--dock-accent:#e52a32;height:104px;padding:10px;gap:8px;border:1px solid #4a4575;border-radius:19px;background:linear-gradient(135deg,#11102c,#171536 55%,#11102a);box-shadow:0 14px 38px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.premium-game-bar.keno-game-bar{--dock-accent:#8d42e5}
+.premium-game-bar.road-game-bar{--dock-accent:#dda62c}
+.premium-game-bar>div{position:relative;padding:11px 14px;display:flex;flex-direction:column;justify-content:center;border:1px solid #2d2a4d!important;border-radius:12px;background:rgba(8,8,25,.4)}
+.premium-game-bar>div:first-child{border:1px solid color-mix(in srgb,var(--dock-accent) 30%,#2d2948)!important;background:linear-gradient(135deg,color-mix(in srgb,var(--dock-accent) 13%,#151128),rgba(9,8,25,.45))}
+.premium-game-bar small{color:#807b9c;font-size:7px;font-weight:1000;letter-spacing:1.15px}
+.premium-game-bar strong{margin-top:6px;color:#fff;font-size:13px;line-height:1.05}
+.premium-game-bar .bar-brand img{width:145px;height:36px;object-fit:contain;object-position:left}
+.premium-game-bar .bar-brand span{margin-top:2px;color:var(--dock-accent);font-size:7px;font-weight:1000;letter-spacing:1.1px}
+.premium-game-bar .dock-progress{padding-bottom:18px}
+.premium-game-bar .dock-progress::before{content:'';position:absolute;left:14px;right:14px;bottom:9px;height:4px;border-radius:999px;background:#302d53}
+.premium-game-bar .dock-progress::after{content:'';position:absolute;left:14px;bottom:9px;width:calc((100% - 28px)*var(--dock-progress,0));height:4px;border-radius:999px;background:var(--dock-accent);box-shadow:0 0 11px color-mix(in srgb,var(--dock-accent) 50%,transparent);transition:width .38s ease}
+.premium-game-bar .dock-progress strong{color:color-mix(in srgb,var(--dock-accent) 25%,white)}
+@media(max-width:1100px){.premium-game-bar{grid-template-columns:165px 1fr 1fr .65fr}.premium-game-bar>div:nth-last-child(-n+2){display:none}}
+
+.moment-kicker{min-width:250px;padding:10px 22px;display:inline-flex;align-items:center;justify-content:center;border:1px solid color-mix(in srgb,var(--moment) 72%,white);border-radius:999px;background:color-mix(in srgb,var(--moment) 18%,#0b0910);color:color-mix(in srgb,var(--moment) 42%,white);font-size:15px;font-weight:1000;letter-spacing:2.8px;box-shadow:0 0 28px color-mix(in srgb,var(--moment) 22%,transparent);text-transform:uppercase}
+
+.road-track i{font-size:13px;color:#918981}.road-current strong{margin-top:5px;font-size:18px}.road-current>div:nth-child(2) strong,.road-current>div:nth-child(3) strong{font-size:27px;line-height:1;color:#f4c04f}
+
+/* Lobbies introduce the game; live rounds keep the play area as the protagonist. */
+.road-integrated-lobby{background-image:linear-gradient(rgba(5,4,9,.5),rgba(5,4,9,.91)),url('/assets/game-catalog/road-to-millionaire/background.png')}
+.road-lobby-summary{width:min(760px,100%);margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.road-lobby-summary>div{padding:15px 18px;border:1px solid #5b4728;border-radius:13px;background:rgba(10,8,12,.9);text-align:left}
+.road-lobby-summary small{display:block;color:#ba8b35;font-size:8px;font-weight:1000;letter-spacing:1.2px}
+.road-lobby-summary strong{display:block;margin-top:6px;color:#fff;font-size:15px}
+.road-lobby-actions{margin-top:18px;display:flex;gap:10px}
+.road-lobby-actions button{min-width:210px;padding:15px 22px;border:1px solid #6a5530;border-radius:13px;background:#0c0a0d;color:#fff;font-size:11px;font-weight:1000;text-transform:uppercase;cursor:pointer}
+.road-lobby-actions button:first-child{border-color:#f0bc4b;background:linear-gradient(135deg,#e4ab2f,#9e6707);color:#201503;box-shadow:0 14px 32px rgba(211,151,30,.22)}
+
+.delta-game-screen,.roulette-delta-screen,.road-screen{position:relative}
+.delta-game-screen>img,.roulette-delta-screen>img,.road-hero img{position:absolute;z-index:4;top:18px;right:20px;width:94px;height:94px;margin:0;padding:6px;object-fit:contain;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(7,6,12,.76);box-shadow:0 14px 30px rgba(0,0,0,.32);filter:drop-shadow(0 10px 22px #000)}
+.delta-game-screen h1,.roulette-delta-screen h1{margin-top:0}
+.road-hero{justify-content:center;text-align:center}
+.road-hero>div{max-width:760px;text-align:center}
+
+/* DeltaPick Keno: difficulty and players are separate, aligned with the action column. */
+.keno-setup-stack,.keno-integrated-lobby .integrated-lobby-menu{height:390px}
+.keno-setup-stack{display:grid;grid-template-rows:116px minmax(0,1fr);gap:12px}
+.keno-difficulty-card,.keno-player-card{min-height:0;overflow:hidden;border:1px solid #633c88;border-radius:17px;background:rgba(7,6,13,.92);text-align:left}
+.keno-difficulty-card>header{height:42px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #352941}
+.keno-difficulty-card>header span{color:#fff;font-size:11px;font-weight:1000}
+.keno-difficulty-card>header strong{color:#9c71bf;font-size:7px;letter-spacing:1px}
+.keno-lobby-difficulty{padding:7px 13px}
+.keno-lobby-difficulty .difficulty-picker{width:100%;margin:0}
+.keno-player-card>header{height:50px}
+.keno-player-card .integrated-player-row{height:52px}
+.keno-player-card>button{margin:11px auto 0}
+.keno-turn-assignment{width:min(760px,100%);margin-top:18px;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:10px;align-items:stretch}
+.keno-turn-assignment .assigned-ticket{margin:0;display:flex;flex-direction:column;justify-content:center}
+.keno-shot-card{padding:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #8d45d1;border-radius:15px;background:linear-gradient(145deg,rgba(91,29,143,.78),rgba(12,9,28,.96));box-shadow:0 15px 32px rgba(0,0,0,.28)}
+.keno-shot-card small{color:#c990f4;font-size:8px;font-weight:1000;letter-spacing:1.2px}
+.keno-shot-card strong{margin-top:2px;font-size:42px;line-height:1;color:#fff}
+.keno-shot-card span{margin-top:2px;color:#fff;font-size:10px;font-weight:1000;letter-spacing:1.5px}
+.keno-shot-card em{margin-top:7px;color:#9a8da8;font-size:7px;font-style:normal}
+.keno-turn-assignment+.delta-run-stats{margin-top:12px}
+.keno-risk{grid-template-columns:repeat(4,1fr)}
+.keno-controls #play-ticket{width:100%;min-width:0;margin:0;margin-top:auto;padding:14px;border:2px solid #8c6500;border-radius:10px;background:#ffba08;color:#241d00;font-size:10px;font-weight:1000;box-shadow:0 4px 0 #8d6500;text-transform:uppercase}
+.keno-controls #play-ticket:disabled{opacity:.72;box-shadow:none}
+.keno-controls #play-ticket.is-complete{background:linear-gradient(135deg,#42e58b,#1aa35f);border-color:#6df0aa;color:#061b10;box-shadow:0 4px 0 #0d6e3d,0 0 24px rgba(55,224,131,.28);cursor:pointer}
+.keno-number{position:relative;overflow:visible;transform-style:preserve-3d;transition:border-color .25s,background .25s,box-shadow .25s,outline-color .25s}
+.keno-number.picked{outline:2px solid #a66cff;outline-offset:-4px}
+.keno-number.drawn{z-index:1;border-color:#3b345f;background:#171631;color:#f05275;box-shadow:inset 0 0 18px rgba(225,45,86,.13);animation:keno-number-reveal .55s cubic-bezier(.2,.72,.2,1) both;animation-delay:calc(var(--reveal-order,0)*45ms)}
+.keno-number.picked.drawn.hit{z-index:2;border:2px solid #a66cff;outline:2px solid #a66cff;outline-offset:1px;background:#7137db;color:transparent;box-shadow:0 0 0 3px rgba(155,80,255,.16),0 0 22px rgba(106,55,218,.42)}
+.keno-number.picked.drawn.hit::before{content:attr(data-number);position:absolute;inset:16%;display:grid;place-items:center;clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%);background:linear-gradient(145deg,#b9ff66,#30bd36 58%,#177422);color:#11210e;font-size:11px;font-weight:1000;text-shadow:0 1px rgba(255,255,255,.45)}
+.keno-number.picked.drawn.hit::after{content:'✓';position:absolute;right:-5px;top:-6px;width:17px;height:17px;display:grid;place-items:center;border:2px solid #16122c;border-radius:50%;background:#5ce376;color:#0d2715;font-size:9px;font-weight:1000}
+@keyframes keno-number-reveal{0%{transform:perspective(500px) rotateY(0) scale(1)}48%{transform:perspective(500px) rotateY(90deg) scale(.9)}100%{transform:perspective(500px) rotateY(0) scale(1)}}
+.keno-shot-math{width:min(700px,100%);min-height:48px;margin-top:8px;padding:6px 10px;display:flex;align-items:center;justify-content:center;gap:11px;border:1px solid #393568;border-radius:13px;background:#11102a;box-shadow:0 8px 22px rgba(0,0,0,.22)}
+.keno-shot-math>span{min-width:84px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.keno-shot-math small{color:#817b9f;font-size:7px;font-weight:1000;letter-spacing:.9px}
+.keno-shot-math strong{margin-top:3px;color:#fff;font-size:14px;font-weight:1000;font-variant-numeric:tabular-nums}
+.keno-shot-math strong i{color:#c7c2dc;font-style:normal}
+.keno-shot-math>b{color:#4e496d;font-size:16px}
+.keno-shot-math .keno-turn-x{min-width:128px;padding:5px 10px;border-radius:9px;background:#1c183d}
+.keno-shot-math .win{color:#62e896}.keno-shot-math .push{color:#ffd158}.keno-shot-math .loss{color:#ff7079}
+.keno-board-wrap{position:relative}.keno-board-wrap>p{margin-top:7px}
+.keno-board-result{position:absolute;z-index:5;left:50%;top:50%;width:142px;height:86px;transform:translate(-50%,-68%);display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid #453e71;border-radius:12px;background:#171631;box-shadow:0 18px 45px rgba(0,0,0,.55);animation:keno-result-pop .35s .55s both}
+.keno-board-result small{font-size:7px;font-weight:1000;letter-spacing:1.2px}.keno-board-result strong{margin-top:2px;font-size:25px;line-height:1}.keno-board-result span{margin-top:6px;font-size:8px;font-weight:900}.keno-board-result.profit{border-color:#62e638;box-shadow:0 0 22px rgba(79,226,49,.24)}.keno-board-result.profit small,.keno-board-result.profit strong,.keno-board-result.profit span{color:#67e83d}.keno-board-result.partial{border-color:#e4ae35}.keno-board-result.partial small,.keno-board-result.partial strong,.keno-board-result.partial span{color:#f1bd49}.keno-board-result.miss{border-color:#6b2942}.keno-board-result.miss small,.keno-board-result.miss strong,.keno-board-result.miss span{color:#ef5877}
+@keyframes keno-result-pop{from{opacity:0;transform:translate(-50%,-60%) scale(.88)}to{opacity:1;transform:translate(-50%,-68%) scale(1)}}
+.turn-result-compact{padding:40px}.turn-result-compact .roulette-turn-performance{width:min(560px,100%);margin-top:16px}.turn-result-compact .roulette-turn-performance em{grid-column:1/3;margin-top:8px;padding-top:8px;border-top:1px solid #312b31;color:#aaa1aa;font-size:9px;font-style:normal;font-weight:1000;letter-spacing:.7px}.turn-result-compact .roulette-turn-performance em.profit{color:#64db91}.turn-result-compact .roulette-turn-performance em.partial{color:#f2bd49}.turn-result-compact .roulette-turn-performance em.miss{color:#ff646d}.turn-result-compact>button{min-width:300px;margin-top:18px}
+#page-match-moment{display:grid;place-items:center}.match-moment{width:min(690px,100%);height:auto;min-height:470px;padding:27px 38px}.match-moment .moment-trophy{width:54px;height:54px;margin:9px 0 5px;font-size:23px}.match-moment h1{font-size:clamp(31px,3.2vw,45px)}.match-moment>p{margin-top:7px}.match-moment .moment-standings{width:min(530px,100%);margin-top:16px;gap:5px}.match-moment .moment-standing{min-height:47px}.match-moment>button{margin-top:15px}.match-moment .moment-standing:first-child b{color:#f3c34d}
+
+@media(max-width:900px){
+  .road-lobby-summary{grid-template-columns:1fr}
+  .keno-turn-assignment{grid-template-columns:1fr 110px}
+  .delta-game-screen>img,.roulette-delta-screen>img,.road-hero img{top:12px;right:12px;width:72px;height:72px}
+}

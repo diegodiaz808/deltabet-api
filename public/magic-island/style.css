@@ -1,0 +1,170 @@
+:root {
+  --red: #35e02f;
+  --gold: #f5c542;
+}
+
+.turn-banner, .round-title { text-shadow: 0 2px 10px #000; }
+
+.header-game-name span { color: #35e02f; }
+.header-nav a { border-color: rgba(53, 224, 47, 0.72); }
+.header-nav a:hover { background: #1d9e75; border-color: #35e02f; }
+
+/* Compact lobby: keep the polished shared menu, closer to the original scale. */
+#screen-home { padding-top: 2px; }
+#screen-home .logo-card { width: 112px; margin-top: 2px; }
+#screen-home > .tagline { margin: 10px 0 18px; font-size: 14px; }
+#screen-home .home-grid {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 1.3fr) minmax(250px, .72fr);
+  gap: 24px;
+}
+#screen-home .players-panel {
+  min-height: 286px;
+  border-width: 2px;
+  border-radius: 22px;
+  box-shadow: 0 16px 42px rgba(0,0,0,.38);
+}
+#screen-home .pp-head { min-height: 66px; font-size: 17px; }
+#screen-home .pp-row { padding: 5px 0; }
+#screen-home .pp-row input,
+#screen-home .pp-row .admin { font-size: 16px; }
+#screen-home .pp-foot { padding: 7px 0 11px; }
+#screen-home .pp-foot button { padding: 7px 16px; font-size: 11px; border-radius: 12px; }
+#screen-home .menu-col { min-height: 286px; gap: 16px; }
+#screen-home .menu-btn {
+  min-height: 72px;
+  border-width: 2px;
+  border-radius: 22px;
+  font-size: 20px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.34);
+}
+#screen-home .menu-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(53,224,47,.16); }
+#screen-home .disclaimer { margin-top: 20px; font-size: 10px; }
+
+.cp.current { background: #1d9e75; box-shadow: 0 0 18px #35e02f; }
+.cp.current::before { text-shadow: 0 0 8px #35e02f; }
+
+.cp.trophy { font-size: 20px; }
+
+td.neg { color: #ff6b6b; }
+td.pos { color: #7dff8a; }
+
+table.scores th { background: #35e02f; color: #002b00; }
+
+.card.mi-card { background: linear-gradient(135deg, #0a5c2c, #1d9e75 55%, #0a5c2c); border-color: #35e02f; }
+
+.card-label { color: #35e02f; font-weight: 800; text-align: left; margin: 12px 0 6px; letter-spacing: 1px; }
+
+.slot-card {
+  background: linear-gradient(135deg, #123, #1d9e75);
+  border: 2px solid #35e02f;
+  border-radius: 10px;
+  padding: 22px 14px;
+  font-size: 26px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.challenge-card {
+  background: #f2e8c9;
+  color: #1d3a1d;
+  border: 2px solid #35e02f;
+  border-radius: 10px;
+  padding: 20px 16px;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.island-spin-panel {
+  position: relative;
+  isolation: isolate;
+  width: min(920px, 100%);
+  max-width: 920px;
+  overflow: hidden;
+  padding: 34px clamp(22px, 4vw, 46px) 30px;
+  border: 1px solid rgba(91, 255, 135, .78);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 50% -25%, rgba(74, 242, 156, .25), transparent 42%),
+    linear-gradient(145deg, rgba(2, 20, 18, .97), rgba(0, 5, 7, .96));
+  box-shadow: 0 30px 90px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.08), 0 0 35px rgba(53,224,47,.1);
+}
+
+.island-spin-panel::before,
+.island-spin-panel::after {
+  content: '✦';
+  position: absolute;
+  z-index: -1;
+  color: rgba(81,255,167,.12);
+  font-size: 160px;
+  line-height: 1;
+  transform: rotate(18deg);
+}
+.island-spin-panel::before { left: -28px; bottom: -42px; }
+.island-spin-panel::after { right: -22px; top: -50px; transform: rotate(-15deg) scale(.8); }
+.island-draw-label { display:flex;align-items:center;justify-content:center;gap:12px;color:#78eeb1;font-size:9px;font-weight:1000;letter-spacing:2px; }
+.island-draw-label span { width:38px;height:1px;background:linear-gradient(90deg,transparent,#78eeb1); }
+.island-draw-label span:last-child { transform:rotate(180deg); }
+.island-spin-panel h3 { margin-top:14px;font-size:clamp(25px,3.5vw,38px);line-height:1.05;letter-spacing:-.5px;text-shadow:0 5px 24px #000; }
+.island-spin-copy { margin:9px auto 25px;color:#8fa9a0;font-size:13px; }
+.island-machine { display:grid;grid-template-columns:minmax(0,1fr) 52px minmax(0,1fr);gap:12px;align-items:center; }
+.island-reel { min-width:0; }
+.island-reel>small { display:block;margin:0 0 7px 5px;color:#6e9687;font-size:8px;font-weight:1000;letter-spacing:1.5px;text-align:left; }
+.reel-window {
+  position:relative;
+  min-height:184px;
+  padding:24px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border:1px solid rgba(97,235,157,.65);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(24,119,78,.8),rgba(6,53,44,.92));
+  box-shadow:inset 0 0 35px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.13),0 12px 30px rgba(0,0,0,.25);
+}
+.challenge-reel .reel-window { background:linear-gradient(145deg,rgba(14,136,104,.88),rgba(5,50,54,.95)); }
+.reel-window::before,.reel-window::after { content:'';position:absolute;left:0;right:0;height:42px;z-index:2;pointer-events:none; }
+.reel-window::before { top:0;background:linear-gradient(#03231d,transparent); }
+.reel-window::after { bottom:0;background:linear-gradient(transparent,#03231d); }
+.reel-window i { width:48px;height:48px;display:grid;place-items:center;margin-bottom:12px;border:1px solid rgba(255,255,255,.22);border-radius:14px;background:rgba(0,0,0,.18);color:#d8ff8b;font-size:24px;font-style:normal;box-shadow:0 8px 20px rgba(0,0,0,.2); }
+.reel-window strong { font-size:clamp(28px,4vw,43px);letter-spacing:1px; }
+.reel-window em { margin-top:6px;color:#9cc3b4;font-size:10px;font-style:normal;text-transform:uppercase;letter-spacing:.8px; }
+.machine-link { display:flex;flex-direction:column;align-items:center;gap:8px; }
+.machine-link b { width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(245,197,66,.7);border-radius:50%;background:#151107;color:#f5c542;font-size:22px;box-shadow:0 0 20px rgba(245,197,66,.15); }
+.machine-link span { width:1px;height:34px;background:linear-gradient(transparent,#f5c542,transparent); }
+.island-spin-button { width:min(310px,100%);min-height:58px;margin-top:27px;padding:8px 10px 8px 24px;display:inline-flex;align-items:center;justify-content:space-between;border:1px solid #ffd85c;border-radius:16px;background:linear-gradient(135deg,#f5c542,#bc7812);color:#171000;font-size:14px;font-weight:1000;box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 14px 32px rgba(210,147,19,.22);transition:transform .2s ease,filter .2s ease,box-shadow .2s ease; }
+.island-spin-button b { width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:rgba(0,0,0,.18);font-size:20px; }
+.island-spin-button:hover { transform:translateY(-3px);filter:brightness(1.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 18px 38px rgba(210,147,19,.3); }
+.spin-status { margin-top:14px;display:flex;align-items:center;justify-content:center;gap:7px;color:#68877b;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.8px; }
+.spin-status i { width:6px;height:6px;border-radius:50%;background:#49e08a;box-shadow:0 0 10px #49e08a; }
+.island-spin-panel.is-spinning .reel-window>* { animation:islandReel .16s linear infinite; }
+.island-spin-panel.is-spinning .reel-window { box-shadow:inset 0 0 55px rgba(0,0,0,.55),0 0 28px rgba(81,255,167,.22); }
+.island-spin-panel.is-spinning .island-spin-button { transform:scale(.98);filter:saturate(.7); }
+.island-spin-panel.is-spinning .island-spin-button span { font-size:0; }
+.island-spin-panel.is-spinning .island-spin-button span::after { content:'GENERATING MISSION...';font-size:12px; }
+.island-spin-panel.is-spinning .spin-status { color:#87d9b8; }
+@keyframes islandReel { 0%{transform:translateY(-10px);filter:blur(0)} 50%{transform:translateY(12px);filter:blur(2px)} 100%{transform:translateY(-10px);filter:blur(0)} }
+
+@media(max-width:700px){
+  #screen-home .logo-card { width: 96px; }
+  #screen-home > .tagline { margin-bottom: 14px; font-size: 12px; }
+  #screen-home .home-grid { gap: 14px; }
+  #screen-home .players-panel { min-height: 250px; border-radius: 18px; }
+  #screen-home .menu-col { min-height: 228px; gap: 12px; }
+  #screen-home .menu-btn { min-height: 64px; border-radius: 18px; font-size: 18px; }
+  .island-spin-panel { padding:26px 16px 24px;border-radius:20px; }
+  .island-machine { grid-template-columns:1fr; }
+  .machine-link { flex-direction:row;justify-content:center; }
+  .machine-link span { width:34px;height:1px; }
+  .reel-window { min-height:150px; }
+  .island-spin-copy { margin-bottom:18px; }
+}
+.balance-calculator .tab.active-pre,
+.balance-calculator .tab.active-post { background: linear-gradient(135deg,#1d9e75,#07563f); }
+.balance-calculator .balance-input-wrap:focus-within { box-shadow: 0 0 0 4px rgba(53,224,47,.1); }
