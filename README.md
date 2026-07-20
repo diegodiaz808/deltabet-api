@@ -6,6 +6,10 @@ This repo contains the tournament engine, its REST API, and the playable game de
 
 🌐 Product site: [deltabet.xyz](https://deltabet.xyz)
 
+![Games hub](screenshots/hub.png)
+
+![God's Roulette — match setup](screenshots/gods-roulette.png)
+
 ## Architecture
 
 One tournament engine, N games as configurations on top:
